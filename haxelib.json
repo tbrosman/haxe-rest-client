@@ -1,0 +1,12 @@
+{
+  "name": "rest-client",
+  "url": "https://github.com/tbrosman/haxe-rest-client",
+  "license": "MIT",
+  "tags": ["rest"],
+  "description": "A REST-ish client for Haxe.",
+  "version": "0.1",
+  "releasenote": "",
+  "contributors": ["silexlabs"],
+  "dependencies": {
+  }
+}
