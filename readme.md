@@ -7,7 +7,6 @@ This library grew out of a logging client I created for another Haxe project. I 
 I am aware of haxe.web.Dispatch but find it cumbersome for free-form REST calls (a good discussion about this can be found [here](https://groups.google.com/forum/#!topic/haxelang/eQtf--1_tpo)).
 
 ## Limitations
-* GET and PUT verbs are the only ones supported
 * The only verbs supported by the generic Haxe HTTP API are GET and POST.
 
 ## Future
