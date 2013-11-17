@@ -1,8 +1,10 @@
 -main ClientMain
 -cp ../src
+-cp ../../../
 -neko ../bin/ClientMain.n
 
--lib restclient
+# Uncomment this and comment out the ../../../ classpath to compile against the locally installed haxelib
+# -lib restclient
 
 --next
 -main Index

@@ -12,12 +12,11 @@ class ClientMain
         
         var outParams = new Hash<String>();
         outParams.set("key", "test");
-        RestClient.get(
+        var result = RestClient.get(
             "http://localhost:8000",
-            outParams, function(e)
-            {
-                Sys.println("Returned from server: " + e);
-            });
+            outParams);
+            
+        Sys.println("Returned from server: " + result);
         
         Sys.println("Press Enter to close the client...");
         Sys.stdin().readLine();

@@ -12,21 +12,45 @@ class RestClient
     {
     }
     
-    public static function post(url:String, parameters:Hash<String> = null, onData:String->Void = null, onError:String->Void = null):Void
+    public static function post(url:String, parameters:Hash<String> = null, onError:String->Void = null):String
     {
-        var r = buildHttpRequest(url, parameters, onData, onError);
+        var result:String;
+        var r = buildHttpRequest(
+            url,
+            parameters,
+            function(data:String)
+            {
+                result = data;
+            },
+            onError);
         r.request(true);
+        
+        return result;
     }
     
-    public static function get(url:String, parameters:Hash<String> = null, onData:String->Void = null, onError:String->Void = null):Void
+    public static function get(url:String, parameters:Hash<String> = null, onError:String->Void = null):String
     {
-        var r = buildHttpRequest(url, parameters, onData, onError);
+        var result:String;
+        var r = buildHttpRequest(
+            url,
+            parameters,
+            function(data:String)
+            {
+                result = data;
+            },
+            onError);
         r.request(false);
+        
+        return result;
     }
     
     private static function buildHttpRequest(url:String, parameters:Hash<String> = null, onData:String->Void = null, onError:String->Void = null):Http
     {
         var r = new Http(url);
+        
+        #if js
+        r.async = false;
+        #end
         
         if (onError != null)
         {
