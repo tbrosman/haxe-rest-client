@@ -8,7 +8,7 @@ I am aware of haxe.web.Dispatch but find it cumbersome for free-form REST calls 
 
 ## Limitations
 * Async operations only
-* GET and POST verbs are the only ones supported
+* The only verbs supported by the generic Haxe HTTP API are GET and POST.
 
 ## Future
 * Address the above limitations
