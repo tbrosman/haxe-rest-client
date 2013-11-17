@@ -1,0 +1,1 @@
+haxelib git restclient https://github.com/tbrosman/haxe-rest-client.git

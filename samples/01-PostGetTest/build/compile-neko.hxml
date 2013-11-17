@@ -1,0 +1,10 @@
+-main ClientMain
+-cp ../src
+-neko ../bin/ClientMain.n
+
+-lib restclient
+
+--next
+-main Index
+-cp ../src
+-neko ../bin/Index.n
