@@ -1,5 +1,7 @@
 import restclient.RestClient;
+#if neko
 import neko.Sys;
+#end
 
 class ClientMain
 {
@@ -8,7 +10,9 @@ class ClientMain
         var inParams = new Hash<String>();
         inParams.set("key", "test");
         inParams.set("value", "asdf");
-        RestClient.post("http://localhost:8000", inParams);
+        RestClient.post(
+            "http://localhost:8000",
+            inParams);
         
         var outParams = new Hash<String>();
         outParams.set("key", "test");
@@ -16,9 +20,11 @@ class ClientMain
             "http://localhost:8000",
             outParams);
             
-        Sys.println("Returned from server: " + result);
+        trace("Returned from server: " + result);
         
-        Sys.println("Press Enter to close the client...");
+        trace("Press Enter to close the client...");
+#if neko
         Sys.stdin().readLine();
+#end
     }
 }
