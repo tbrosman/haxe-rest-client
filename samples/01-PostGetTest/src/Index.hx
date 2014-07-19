@@ -5,7 +5,7 @@ import neko.Lib;
 
 class Index
 {
-    static var cache = new Hash<String>();
+    static var cache = new Map<String, String>();
     
     static function main()
     {

@@ -8,11 +8,7 @@ import haxe.Http;
  */
 class RestClient
 {
-    public function new() 
-    {
-    }
-    
-    public static function post(url:String, parameters:Hash<String> = null, onError:String->Void = null):String
+    public static function post(url:String, parameters:Map<String, String> = null, onError:String->Void = null):String
     {
         var result:String;
         var r = buildHttpRequest(
@@ -28,7 +24,7 @@ class RestClient
         return result;
     }
     
-    public static function get(url:String, parameters:Hash<String> = null, onError:String->Void = null):String
+    public static function get(url:String, parameters:Map<String, String> = null, onError:String->Void = null):String
     {
         var result:String;
         var r = buildHttpRequest(
@@ -44,7 +40,7 @@ class RestClient
         return result;
     }
     
-    private static function buildHttpRequest(url:String, parameters:Hash<String> = null, onData:String->Void = null, onError:String->Void = null):Http
+    private static function buildHttpRequest(url:String, parameters:Map<String, String> = null, onData:String->Void = null, onError:String->Void = null):Http
     {
         var r = new Http(url);
         
