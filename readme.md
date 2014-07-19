@@ -11,4 +11,3 @@ I am aware of haxe.web.Dispatch but find it cumbersome for free-form REST calls 
 
 ## Future
 * Work around Haxe's limited HTTP verb support
-* Haxe 3 support
