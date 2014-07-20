@@ -5,9 +5,10 @@ import Sys;
 
 class ClientMain
 {
-    static function main()
-    {
-        var inParams = new Map<String, String>();
+	static function testSync()
+	{
+		trace("Testing sync");
+	    var inParams = new Map<String, String>();
         inParams.set("key", "test");
         inParams.set("value", "asdf");
         RestClient.post(
@@ -21,9 +22,39 @@ class ClientMain
             outParams);
             
         trace("Returned from server: " + result);
+	}
+	
+	static function testAsync()
+	{
+		trace("Testing async");
+		var inParams = new Map<String, String>();
+        inParams.set("key", "test");
+        inParams.set("value", "asdf");
+        RestClient.postAsync(
+            "http://localhost:8000",
+			function(result)
+			{
+				trace("POST returned");
+			},
+            inParams);
         
-        trace("Press Enter to close the client...");
+        var outParams = new Map<String, String>();
+        outParams.set("key", "test");
+        RestClient.getAsync(
+            "http://localhost:8000",
+			function(result)
+			{
+				trace("Returned from server: " + result);
+			},
+            outParams);
+	}
+	
+    static function main()
+    {
+		testSync();
+		testAsync();
 #if sys
+		trace("Press Enter to close the client...");
         Sys.stdin().readLine();
 #end
     }
