@@ -23,7 +23,7 @@ The interface is designed to be clean and readable as well as symmetric between 
         function(result)
         {
             trace(result);
-        }
+        },
         ["testParam" => "asdf"]);
 ```
 
