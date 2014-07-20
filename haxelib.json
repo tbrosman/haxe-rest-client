@@ -4,7 +4,7 @@
   "license": "MIT",
   "tags": ["rest"],
   "description": "A REST-ish client for Haxe.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "releasenote": "",
   "contributors": ["tbrosman"],
   "dependencies": {
