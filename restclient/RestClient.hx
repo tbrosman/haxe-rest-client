@@ -9,15 +9,16 @@ import haxe.io.BytesOutput;
  */
 class RestClient
 {
-    public static function postAsync(url:String, onData:String->Void = null, parameters:Map < String, String > = null, onError:String->Void = null):Void
+    public static function postAsync(url:String, onData:String->Void = null, parameters:Map<String, String> = null, onError:String->Void = null):Void
     {
-        var r = RestClient.buildHttpRequest(
+        var httpRequest:Http = RestClient.buildHttpRequest(
             url,
             parameters,
             true,
             onData,
             onError);
-        r.request(true);
+        httpRequest.addHeader("Content-length", "0");
+        httpRequest.request(true);
     }
     
     // No synchronous requests/sockets on Flash
@@ -25,7 +26,7 @@ class RestClient
     public static function post(url:String, parameters:Map<String, String> = null, onError:String->Void = null):String
     {
         var result:String;
-        var http = RestClient.buildHttpRequest(
+        var httpRequest:Http = RestClient.buildHttpRequest(
             url,
             parameters,
             false,
@@ -34,26 +35,27 @@ class RestClient
                 result = data;
             },
             onError);
+        httpRequest.addHeader("Content-length", "0");
 
         // Use the existing http.request only if sys isn't present
         #if sys
-            return makeSyncRequest(http, "POST");
+            return makeSyncRequest(httpRequest, "POST");
         #else
-            http.request(true);
+            httpRequest.request(true);
             return result;
         #end
     }
     #end
     
-    public static function getAsync(url:String, onData:String->Void = null, parameters:Map < String, String > = null, onError:String->Void = null):Void
+    public static function getAsync(url:String, onData:String->Void = null, parameters:Map<String, String> = null, onError:String->Void = null):Void
     {
-        var r = RestClient.buildHttpRequest(
+        var httpRequest:Http = RestClient.buildHttpRequest(
             url,
             parameters,
             true,
             onData,
             onError);
-        r.request(false);
+        httpRequest.request(false);
     }
     
     // No synchronous requests/sockets on Flash
@@ -62,7 +64,7 @@ class RestClient
     {
         var result:String;
 
-        var http = RestClient.buildHttpRequest(
+        var httpRequest:Http = RestClient.buildHttpRequest(
             url,
             parameters,
             false,
@@ -74,20 +76,20 @@ class RestClient
         
         // Use the existing http.request only if sys isn't present
         #if sys
-            return makeSyncRequest(http, "GET");
+            return makeSyncRequest(httpRequest, "GET");
         #else
-            http.request(false);
+            httpRequest.request(false);
             return result;
         #end
     }
     #end
     
     #if sys
-    private static function makeSyncRequest(http:Http, method:String = "GET"):String
+    private static function makeSyncRequest(httpRequest:Http, method:String = "GET"):String
     {
         // TODO: SSL for HTTPS URLs
         var output = new BytesOutput();
-        http.customRequest(false, output, null, method);
+        httpRequest.customRequest(false, output, null, method);
         return output.getBytes()
             .toString();
     }
@@ -95,35 +97,30 @@ class RestClient
     
     private static function buildHttpRequest(url:String, parameters:Map<String, String> = null, async:Bool = false, onData:String->Void = null, onError:String->Void = null):Http
     {
-        var http = new Http(url);
+        var httpRequest = new Http(url);
             
         #if js
-        http.async = async;
+        httpRequest.async = async;
         #end
         
         if (onError != null)
         {
-            http.onError = onError;
+            httpRequest.onError = onError;
         }
         
         if (onData != null)
         {
-            http.onData = onData;
+            httpRequest.onData = onData;
         }
         
         if (parameters != null)
         {
             for (x in parameters.keys())
             {
-                http.setParameter(x, parameters.get(x));
+                httpRequest.setParameter(x, parameters.get(x));
             }
         }
         
-        #if flash
-        // Disable caching
-        http.setParameter("_nocache", Std.string(Date.now().getTime()));
-        #end
-        
-        return http;
+        return httpRequest;
     }
 }
