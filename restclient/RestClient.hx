@@ -17,7 +17,6 @@ class RestClient
             true,
             onData,
             onError);
-        httpRequest.addHeader("Content-length", "0");
         httpRequest.request(true);
     }
     
@@ -35,7 +34,6 @@ class RestClient
                 result = data;
             },
             onError);
-        httpRequest.addHeader("Content-length", "0");
 
         // Use the existing http.request only if sys isn't present
         #if sys
