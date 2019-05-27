@@ -33,9 +33,8 @@ This has been tested on Neko, Flash, and CPP (on Android) targets. Flash is the 
 If you find any issues using this library with your platform of choice, feel free to open an issue/make a pull request.
 
 ## Limitations
-* Currently only GET and POST are supported (similar to Http.request, which is used in cases where sys is not available).
+* Currently GET, POST, PUT and DELETE are supported. X-HTTP-Method-Override header is used to implement PUT and DELETE for Flash. HTTP method override can also be manually enabled to work around deep inspection firewalls.
 
 ## Future
 * SSL support
-* More verbs
 * Unit tests for more platforms
