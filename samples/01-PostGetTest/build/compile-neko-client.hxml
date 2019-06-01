@@ -1,0 +1,7 @@
+# Uncomment this and comment out the ../../../ classpath to compile against the locally installed haxelib
+# -lib restclient
+
+-main ClientMain
+-cp ../src
+-cp ../../../
+-neko ../bin/ClientMain.n

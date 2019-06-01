@@ -1,0 +1,4 @@
+-main Index
+-cp ../src
+-cp ../../../
+-neko ../bin/Index.n

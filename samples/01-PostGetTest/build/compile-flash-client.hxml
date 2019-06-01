@@ -1,12 +1,7 @@
--main ClientMain
--cp ../src
--cp ../../../
--neko ../bin/ClientMain.n
-
 # Uncomment this and comment out the ../../../ classpath to compile against the locally installed haxelib
 # -lib restclient
 
---next
--main Index
+-main ClientMain
 -cp ../src
--neko ../bin/Index.n
+-cp ../../../
+-swf ../bin/ClientMain.swf
