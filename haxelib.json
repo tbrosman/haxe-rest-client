@@ -2,10 +2,10 @@
   "name": "rest-client",
   "url": "https://github.com/tbrosman/haxe-rest-client",
   "license": "MIT",
-  "tags": ["rest"],
-  "description": "A REST-ish client for Haxe.",
-  "version": "0.2.0",
-  "releasenote": "",
+  "tags": ["rest", "cross", "web"],
+  "description": "A REST client for Haxe.",
+  "version": "0.3.0",
+  "releasenote": "Add support for PUT and DELETE verbs (@timothytylee).",
   "contributors": ["tbrosman"],
   "dependencies": {
   }
