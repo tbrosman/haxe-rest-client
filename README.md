@@ -12,19 +12,19 @@ Both synchronous and asynchronous requests are supported (with some restrictions
 
 The interface is designed to be clean and readable as well as symmetric between sync and async requests:
 
-```
-    var result = RestClient.get(
-        "http://localhost:8000/item/1",
-        ["testParam" => "asdf"]);
-    trace(result;
+```haxe
+var result = RestClient.get(
+    "http://localhost:8000/item/1",
+    ["testParam" => "asdf"]);
+trace(result);
 
-    var result = RestClient.getAsync(
-        "http://localhost:8000/item/1",
-        function(result)
-        {
-            trace(result);
-        },
-        ["testParam" => "asdf"]);
+RestClient.getAsync(
+    "http://localhost:8000/item/1",
+    function(result)
+    {
+        trace(result);
+    },
+    ["testParam" => "asdf"]);
 ```
 
 ## Platforms
